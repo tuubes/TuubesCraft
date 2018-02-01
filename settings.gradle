@@ -1,0 +1,4 @@
+rootProject.name = 'tuubes-craft'
+
+include 'tuubes-core:core'
+include 'tuubes-core:metaprog'
