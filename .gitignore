@@ -1,0 +1,26 @@
+# Build files
+bin/
+build/
+out/
+
+# Directory where the server is launched and tested
+run/
+
+# Gradle cache
+.gradle*
+
+# Netbeans files
+.nb-gradle*
+nbproject
+
+# Eclipse files
+.classpath
+.project
+.settings
+
+# IntelliJ files
+*.iml
+.idea
+
+# Mac OS DS_STORE
+.DS_STORE
