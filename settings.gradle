@@ -1,4 +1,4 @@
-rootProject.name = 'tuubes-craft'
+rootProject.name = 'tuubes'
 
-include 'tuubes-core:core'
-include 'tuubes-core:metaprog'
+include 'tuubes-core:core', 'tuubes-core:metaprog'
+include '1.12'
