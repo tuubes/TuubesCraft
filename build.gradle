@@ -6,3 +6,16 @@ dependencies {
 	compile 'tuubes-core:core'
 	compile 'tuubes-core:metaprog'
 }
+
+subprojects {
+	apply plugin: 'scala'
+	repositories {
+		mavenCentral()
+		maven { url 'https://jitpack.io' }
+	}
+	dependencies {
+		compile 'org.scala-lang:scala-library:2.12.5'
+		testCompile 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+		testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+	}
+}
