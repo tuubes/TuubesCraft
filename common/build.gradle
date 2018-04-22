@@ -1,3 +1,9 @@
-description "Tuubes for Minecraft, common files"
+description = "Tuubes for Minecraft, common files"
 
-dependencies {}
+repositories {
+	mavenCentral()
+	maven { url 'https://jitpack.io' }
+}
+dependencies {
+	compile 'com.github.TheElectronWill:NBJ:3.0'
+}
