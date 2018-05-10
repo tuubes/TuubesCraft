@@ -1,3 +1,5 @@
 description "Tuubes for Minecraft 1.12"
 
-dependencies {}
+dependencies {
+  compile project(':common')
+}
