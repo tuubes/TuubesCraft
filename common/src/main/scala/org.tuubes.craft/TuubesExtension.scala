@@ -1,7 +1,7 @@
 package org.tuubes.craft
 
 import com.electronwill.niol.buffer.provider.{HeapNioAllocator, StageBufferPoolBuilder}
-import org.tuubes.core.World
+import org.tuubes.core.LocalWorld
 import org.tuubes.core.network.NetworkSystem
 import org.tuubes.core.plugins.Plugin
 
@@ -26,8 +26,8 @@ abstract class TuubesExtension extends Plugin {
   }
 
   /** Does nothing */
-  override def onEnable(world: World): Unit = ()
+  override def onEnable(world: LocalWorld): Unit = ()
 
   /** Does nothing */
-  override def onDisable(world: World): Unit = ()
+  override def onDisable(world: LocalWorld): Unit = ()
 }
