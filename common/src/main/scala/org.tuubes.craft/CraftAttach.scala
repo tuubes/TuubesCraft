@@ -5,11 +5,11 @@ import java.nio.channels.SocketChannel
 import com.electronwill.niol.buffer.NiolBuffer
 import com.electronwill.niol.network.tcp.{ClientAttach, ServerChannelInfos}
 
-class CraftAttach(sci: ServerChannelInfos[MinecraftProtocol],
+class CraftAttach(sci: ServerChannelInfos[CraftAttach],
                   chan: SocketChannel,
-                  p: MinecraftProtocol)
+                  var protocol: MinecraftProtocol)
 
-    extends ClientAttach[MinecraftProtocol](sci, p, chan) {
+    extends ClientAttach(sci, chan) {
 
   /**
    * Reads the packet's size.
@@ -27,8 +27,8 @@ class CraftAttach(sci: ServerChannelInfos[MinecraftProtocol],
    */
   override protected def handleData(buffer: NiolBuffer): Unit = {
     // TODO logger.debug(s"Handling incoming packet data of size $buffer.readAvail")
-    val packet = infos.readPacket(buffer)
+    val packet = protocol.readPacket(buffer)
     // TODO logger.debug(s"Packet read: $packet")
-    // TODO handle the packet: apply its effects with a PacketHandler?
+    packet.obj.handle(packet, this)
   }
 }

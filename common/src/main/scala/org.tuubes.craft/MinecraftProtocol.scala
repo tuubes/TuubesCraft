@@ -7,19 +7,20 @@ import org.tuubes.core.blocks.BlockType
 import org.tuubes.core.entities.EntityType
 import org.tuubes.core.items.ItemType
 import org.tuubes.core.network.{Packet, PacketObj, Protocol}
+import org.tuubes.craft.{CraftAttach => C}
 
-abstract class MinecraftProtocol extends Protocol {
-  private val packetIds = new ArrayMap[PacketObj[_]](100, null)
+abstract class MinecraftProtocol extends Protocol[C] {
+  private val packetIds = new ArrayMap[PacketObj[C, Packet[C]]](100, null)
 
-  override def registerPacket(packet: PacketObj[_]): Unit = {
+  override def registerPacket(packet: PacketObj[C, Packet[C]]): Unit = {
     packetIds(packet.id) = packet
   }
 
-  override def readPacket(in: NiolInput): Packet = {
+  override def readPacket(in: NiolInput): Packet[C] = {
     val packetId: Int = in.getVarint()
     val packetObj = packetIds.get(packetId)
     packetObj match {
-      case Some(obj: PacketObj[_]) => obj.read(in)
+      case Some(obj) => obj.read(in)
       case None => null// TODO logger.error(s"Unknown packet id $packetId")
     }
   }
