@@ -1,10 +1,11 @@
 package org.tuubes.craft.mc1_12
 
 import org.tuubes.core.plugins.PluginDescription
+import org.tuubes.craft.mc1_12.handshaking.HandshakingProtocol
 import org.tuubes.craft.{BaseDescription, MinecraftProtocol, TuubesExtension}
 
 final class TuubesCraft1_12 extends TuubesExtension {
-  override val defaultProtocol: MinecraftProtocol = _ // TODO generate the protocol with DataTractor
+  override val defaultProtocol: MinecraftProtocol = HandshakingProtocol // TODO generate the protocol with DataTractor
   override val description: PluginDescription = TuubesCraft1_12
 }
 

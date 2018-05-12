@@ -10,9 +10,9 @@ import org.tuubes.core.network.{Packet, PacketObj, Protocol}
 import org.tuubes.craft.{CraftAttach => C}
 
 abstract class MinecraftProtocol extends Protocol[C] {
-  private val packetIds = new ArrayMap[PacketObj[C, Packet[C]]](100, null)
+  private val packetIds = new ArrayMap[PacketObj[C, _ <: Packet[C]]](100, null)
 
-  override def registerPacket(packet: PacketObj[C, Packet[C]]): Unit = {
+  override def registerPacket[A <: Packet[CraftAttach]](packet: PacketObj[CraftAttach, A]): Unit = {
     packetIds(packet.id) = packet
   }
 
