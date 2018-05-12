@@ -4,6 +4,7 @@ import com.electronwill.niol.NiolInput
 import com.electronwill.utils.IntBijection
 import com.electronwill.collections.ArrayMap
 import org.tuubes.core.blocks.BlockType
+import org.tuubes.core.engine.GameObject
 import org.tuubes.core.entities.EntityType
 import org.tuubes.core.items.ItemType
 import org.tuubes.core.network.{Packet, PacketObj, Protocol}
@@ -30,4 +31,8 @@ abstract class MinecraftProtocol extends Protocol[C] {
   override def itemFunction: IntBijection[ItemType] = ???
 
   override def entityFunction: IntBijection[EntityType] = ???
+
+  override def spawn(obj: GameObject): Unit = ???
+
+  override def despawn(obj: GameObject): Unit = ???
 }
