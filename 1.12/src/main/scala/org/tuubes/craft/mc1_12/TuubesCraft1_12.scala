@@ -10,6 +10,6 @@ final class TuubesCraft1_12 extends TuubesExtension {
 }
 
 object TuubesCraft1_12 extends BaseDescription {
-  override val minecraftVersion: String = "1.12"
-  override val version: String = "0.1"
+  override val minecraftVersion: String = "1.12.2"
+  override val version: String = "0.2"
 }
