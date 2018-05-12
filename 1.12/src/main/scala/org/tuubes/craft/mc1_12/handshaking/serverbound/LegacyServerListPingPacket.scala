@@ -12,8 +12,6 @@ final class LegacyServerListPingPacket(var payload: Int) extends Packet[CraftAtt
   }
 	
   override def obj = LegacyServerListPingPacket
-
-	
 }
 object LegacyServerListPingPacket extends PacketObj[CraftAttach, LegacyServerListPingPacket] {
   override val id = 254
