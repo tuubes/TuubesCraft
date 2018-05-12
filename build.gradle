@@ -11,9 +11,13 @@ subprojects {
 		mavenCentral()
 		maven { url 'https://jitpack.io' }
 	}
+  configurations {
+    provided
+    compile.extendsFrom provided
+  }
 	dependencies {
-		compile 'tuubes-core:core'
-		compile 'org.scala-lang:scala-library:2.12.6'
+		provided 'tuubes-core:core'
+		provided 'org.scala-lang:scala-library:2.12.6'
 		testCompile 'org.junit.jupiter:junit-jupiter-api:5.2.0'
 		testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
 	}

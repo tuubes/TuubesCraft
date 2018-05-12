@@ -1,5 +1,13 @@
-description "Tuubes for Minecraft 1.12"
+description "Tuubes for Minecraft 1.12.2"
 
 dependencies {
   compile project(':common')
+}
+
+task fatJar(type: Jar) {
+  baseName = 'TuubesCraft-' + project.name
+  from { (configurations.compile - configurations.provided).collect {
+    it.isDirectory() ? it : zipTree (it)
+  } }
+  with jar
 }
