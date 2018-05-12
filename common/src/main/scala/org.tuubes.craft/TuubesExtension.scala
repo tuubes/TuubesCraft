@@ -7,9 +7,9 @@ import org.tuubes.core.plugins.Plugin
 
 abstract class TuubesExtension extends Plugin {
   /**
-   * The protocol of this TuubesCraft.
+   * The first protocol associated to each client.
    */
-  val protocol: MinecraftProtocol
+  val defaultProtocol: MinecraftProtocol
 
   override def onLoad(): Unit = {
     val poolBuilder = new StageBufferPoolBuilder()
@@ -17,7 +17,7 @@ abstract class TuubesExtension extends Plugin {
     poolBuilder += (256, 50)
     poolBuilder.defaultHandler(HeapNioAllocator.getBuffer)
     val pool = poolBuilder.build()
-    val tcp = new CraftTcpListener(protocol)
+    val tcp = new CraftTcpListener(defaultProtocol)
     NetworkSystem.selector.listen(25565, 64, pool, tcp)
   }
 
