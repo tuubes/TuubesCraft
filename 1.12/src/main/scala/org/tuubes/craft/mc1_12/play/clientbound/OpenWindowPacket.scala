@@ -14,7 +14,7 @@ final class OpenWindowPacket(var windowId: Int, var windowType: String, var wind
     out.putVarstring(windowTitle, UTF_8)
     out.putInt(numberOfSlots)
     if (entityId.isDefined) {
-      out.putInt(entityId)
+      out.putInt(entityId.get)
     }
   }
 	
@@ -31,6 +31,7 @@ object OpenWindowPacket extends PacketObj[CraftAttach, OpenWindowPacket] {
     val windowTitle = in.getVarstring(UTF_8)
     val numberOfSlots = in.getUnsignedByte()
     // TODO read entityId
+    val entityId = Some(-1)
     new OpenWindowPacket(windowId, windowType, windowTitle, numberOfSlots, entityId)
   }
 }

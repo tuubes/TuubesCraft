@@ -21,7 +21,7 @@ final class BlockActionPacket(var location: Long, var actionIdByte1: Int, var ac
     val x = location >> 38
     val y = (location >> 26) & 0xfff
     val z = location << 38 >> 38
-    new Vec3i(x, y, z)
+    new Vec3i(x.toInt, y.toInt, z.toInt)
   }	
 }
 object BlockActionPacket extends PacketObj[CraftAttach, BlockActionPacket] {

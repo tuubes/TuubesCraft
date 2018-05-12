@@ -22,6 +22,7 @@ object PluginMessagePacket extends PacketObj[CraftAttach, PluginMessagePacket] {
 	
   override def read(in: NiolInput): PluginMessagePacket = {
     val channel = in.getVarstring(UTF_8)
+    val dataLength = 0 // ???
     val data = in.getBytes(dataLength)
     new PluginMessagePacket(channel, data)
   }

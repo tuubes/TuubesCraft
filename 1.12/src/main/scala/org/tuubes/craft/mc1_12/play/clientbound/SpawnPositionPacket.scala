@@ -18,7 +18,7 @@ final class SpawnPositionPacket(var location: Long) extends Packet[CraftAttach] 
     val x = location >> 38
     val y = (location >> 26) & 0xfff
     val z = location << 38 >> 38
-    new Vec3i(x, y, z)
+    new Vec3i(x.toInt, y.toInt, z.toInt)
   }	
 }
 object SpawnPositionPacket extends PacketObj[CraftAttach, SpawnPositionPacket] {
