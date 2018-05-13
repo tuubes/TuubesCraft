@@ -12,6 +12,7 @@ abstract class TuubesExtension extends Plugin {
   val defaultProtocol: MinecraftProtocol
 
   override def onLoad(): Unit = {
+    logger.info("Opening a server on port 25565")
     val poolBuilder = new StageBufferPoolBuilder()
     poolBuilder += (64, 100)
     poolBuilder += (256, 50)
@@ -22,6 +23,7 @@ abstract class TuubesExtension extends Plugin {
   }
 
   override def onUnload(): Unit = {
+    logger.info("Closing port 25565")
     NetworkSystem.selector.unlisten(25565)
   }
 
