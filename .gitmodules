@@ -1,4 +1,4 @@
 [submodule "TuubesCore"]
 	path = TuubesCore
 	url = https://github.com/tuubes/TuubesCore.git
-	branch = scala-rewrite
+	branch = develop
