@@ -3,6 +3,8 @@ package org.tuubes.craft
 import java.nio.channels.SocketChannel
 
 import com.electronwill.niol.NiolInput
+import com.electronwill.niol.buffer.provider.HeapNioAllocator
+import com.electronwill.niol.buffer.{CompositeBuffer, NiolBuffer, StraightBuffer}
 import com.electronwill.niol.network.tcp.{ClientAttach, ServerChannelInfos}
 import org.slf4j.LoggerFactory
 import org.tuubes.core.network.Packet
@@ -62,5 +64,18 @@ class CraftAttach(sci: ServerChannelInfos[CraftAttach],
     val packetObj = protocol.detectPacket[Packet](buffer)
     val packet = packetObj.read(buffer)
     packetObj.handle(packet, this)
+  }
+
+  def send(p: Packet, maxDataSize: Int, completionHandler: Runnable = null): Unit = {
+    val dataBuffer = new StraightBuffer(HeapNioAllocator.getBuffer(maxDataSize + 5))
+    dataBuffer.putVarint(p.id)
+    p.write(dataBuffer)
+
+    val headerBuffer = new StraightBuffer(HeapNioAllocator.getBuffer(5))
+    headerBuffer.putVarint(dataBuffer.readAvail)
+
+    val packetBuffer = new CompositeBuffer(headerBuffer)
+    packetBuffer += dataBuffer
+    write(packetBuffer, completionHandler)
   }
 }
