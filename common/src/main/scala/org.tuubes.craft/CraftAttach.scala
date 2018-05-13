@@ -5,6 +5,7 @@ import java.nio.channels.SocketChannel
 import com.electronwill.niol.NiolInput
 import com.electronwill.niol.network.tcp.{ClientAttach, ServerChannelInfos}
 import org.slf4j.LoggerFactory
+import org.tuubes.core.network.Packet
 
 class CraftAttach(sci: ServerChannelInfos[CraftAttach],
                   chan: SocketChannel,
@@ -57,9 +58,9 @@ class CraftAttach(sci: ServerChannelInfos[CraftAttach],
    * @param buffer the buffer, transformed (ie easily readable) and without the packet's size
    */
   override protected def handleData(buffer: NiolBuffer): Unit = {
-    // TODO logger.debug(s"Handling incoming packet data of size $buffer.readAvail")
-    val packet = protocol.readPacket(buffer)
-    // TODO logger.debug(s"Packet read: $packet")
-    packet.obj.handle(packet, this)
+    logger.debug(s"Handling incoming packet data of size ${buffer.readAvail}")
+    val packetObj = protocol.detectPacket[Packet](buffer)
+    val packet = packetObj.read(buffer)
+    packetObj.handle(packet, this)
   }
 }
