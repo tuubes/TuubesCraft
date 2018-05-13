@@ -19,6 +19,6 @@ final class TuubesCraft1_12 extends TuubesExtension {
 }
 
 object TuubesCraft1_12 extends BaseDescription("1.12.2") {
-  override val version: String = "0.2.31"
+  override val version: String = "0.2.74"
   var logger: Logger = _
 }
