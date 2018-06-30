@@ -1,16 +1,16 @@
 // build.sc
 import $file.TuubesCore.build
-import TuubesCore.{build => coreBuild}
+import TuubesCore.build.{TuubesModule, JUnitTesting, core}
 import mill._, scalalib._
 
-object common extends coreBuild.TuubesModule {
+object common extends TuubesModule {
   def scalaVersion = "2.12.6"
   def ivyDeps = super.ivyDeps() ++ Agg(ivy"com.github.TheElectronWill:NBJ:3.0")
-  def moduleDeps = Seq(coreBuild.core)
-  object test extends Tests with coreBuild.JUnitTesting
+  def moduleDeps = Seq(core)
+  object test extends Tests with JUnitTesting
 }
 
-trait CraftModule extends coreBuild.TuubesModule {
+trait CraftModule extends TuubesModule {
   def moduleDeps = Seq(common)
 }
 
