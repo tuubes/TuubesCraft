@@ -1,6 +1,0 @@
-rootProject.name = 'tuubes-craft'
-
-include '1.12'
-include 'common'
-
-includeBuild 'TuubesCore'
