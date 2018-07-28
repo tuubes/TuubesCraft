@@ -5,7 +5,7 @@ import mill._, scalalib._
 
 object common extends TuubesModule {
   def scalaVersion = "2.12.6"
-  def ivyDeps = super.ivyDeps() ++ Agg(ivy"com.github.TheElectronWill:NBJ:3.0")
+  def ivyDeps = super.ivyDeps() ++ Agg(ivy"com.electronwill.night-config:nbj:3.0.0")
   def moduleDeps = Seq(core)
   object test extends Tests with JUnitTesting
 }
